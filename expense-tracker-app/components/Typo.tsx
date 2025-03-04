@@ -20,7 +20,7 @@ const Typo = ({
     };
     return (
         <Text style={[textStyle, style]}{...textProps}>
-            children
+            {children}
         </Text>
     );
 };
