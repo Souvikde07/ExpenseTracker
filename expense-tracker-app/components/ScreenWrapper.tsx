@@ -2,6 +2,7 @@ import { Dimensions, Platform, StatusBar, StyleSheet, Text, View } from 'react-n
 import React from 'react'
 import { ScreenWrapperProps } from '@/types'
 import { colors } from '@/constants/theme'
+import Welcome from '@/app/(auth)/welcome';
 
 const {height} = Dimensions.get('window');
 
