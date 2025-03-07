@@ -6,16 +6,18 @@ import { colors, spacingX, spacingY } from '@/constants/theme'
 import { verticalScale } from '@/utils/styling'
 import Button from '@/components/Button'
 import Animated, { FadeIn, FadeInDown } from 'react-native-reanimated'
+import { useRouter } from 'expo-router'
 
 const Welcome = () => {
+    const router = useRouter();
   return (
     <ScreenWrapper>
         <view style={styles.container}>
 
             {/* login button and image */}
             <view>
-                <TouchableOpacity style={styles.loginButton}>
-                    <Typo fontWeight={"500"}>Sign in</Typo>
+                <TouchableOpacity onPress={()=> router.push('/(auth)/login')} style={styles.loginButton}>
+                    <Typo color={colors.text} fontWeight={"500"}>Sign in</Typo>
                 </TouchableOpacity>
 
                 <Animated.Image
@@ -32,10 +34,10 @@ const Welcome = () => {
                     entering={FadeInDown.duration(1000).springify().damping(12)} 
                     style={{ alignItems: "center" }}
                 >
-                    <Typo size={30} fontWeight={"800"}>
+                    <Typo color={colors.text} size={30} fontWeight={"800"}>
                         Always take control 
                     </Typo>
-                    <Typo size={30} fontWeight={"800"}>
+                    <Typo color={colors.text} size={30} fontWeight={"800"}>
                         of your finances 
                     </Typo>
                 </Animated.View>
@@ -55,7 +57,7 @@ const Welcome = () => {
                 <Animated.View 
                     entering={FadeInDown.duration(1000).delay(200).springify().damping(12)}    
                     style={styles.buttonContainer}>
-                    <Button>
+                    <Button onPress={()=> router.push('/(auth)/register')}>
                         <Typo size={22} color={colors.neutral900}>Get Started</Typo>
                     </Button>
                 </Animated.View>
