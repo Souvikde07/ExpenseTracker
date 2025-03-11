@@ -19,12 +19,12 @@ const Login = () => {
 
   const handleSubmit = async () => {
     if(!emailRef.current || !passwordRef.current){
-      Alert.alert('Error', "Please fill in all the fields");
+      Alert.alert('Login', "Please fill in all the fields");
       return;
     }
-  console.log('email: ', emailRef.current)
-  console.log('email: ', passwordRef.current)
-  console.log('good to go')
+    console.log('email: ', emailRef.current)
+    console.log('password: ', passwordRef.current)
+    console.log('good to go')
   };
 
   return (
@@ -60,7 +60,7 @@ const Login = () => {
           <Input 
             placeholder='Enter your password'
             secureTextEntry 
-            onChangeText={(value)=> (emailRef.current = value)}
+            onChangeText={(value)=> (passwordRef.current = value)}
             icon={
               <Icons.Lock 
                 size={verticalScale(26)} 
@@ -86,7 +86,7 @@ const Login = () => {
           <Typo size={15} color={colors.text}>
             Don't have an account?
           </Typo>
-          <Pressable onPress={()=> router.push('/(auth)/register')}>
+          <Pressable onPress={()=> router.navigate('/(auth)/register')}>
             <Typo size={15} fontWeight={"700"} color={colors.primary}>Sign up</Typo>
           </Pressable>
         </View>

@@ -12,10 +12,10 @@ const Welcome = () => {
     const router = useRouter();
   return (
     <ScreenWrapper>
-        <view style={styles.container}>
+        <View style={styles.container}>
 
             {/* login button and image */}
-            <view>
+            <View>
                 <TouchableOpacity onPress={()=> router.push('/(auth)/login')} style={styles.loginButton}>
                     <Typo color={colors.text} fontWeight={"500"}>Sign in</Typo>
                 </TouchableOpacity>
@@ -26,10 +26,10 @@ const Welcome = () => {
                     style={styles.WelcomeImage}
                     resizeMode="contain"
                 />
-            </view>
+            </View>
 
             {/* footer */}
-            <view style={styles.footer}>
+            <View style={styles.footer}>
                 <Animated.View 
                     entering={FadeInDown.duration(1000).springify().damping(12)} 
                     style={{ alignItems: "center" }}
@@ -61,9 +61,9 @@ const Welcome = () => {
                         <Typo size={22} color={colors.neutral900}>Get Started</Typo>
                     </Button>
                 </Animated.View>
-            </view>
+            </View>
 
-        </view>
+        </View>
     </ScreenWrapper>
   )
 }
