@@ -4,6 +4,7 @@ import { AuthContextType, UserType } from "../types";
 import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
 import { createContext, useContext, useState, useEffect } from "react";
+import { useRouter } from "expo-router";
 
 
 const AuthContext = createContext<AuthContextType | null>(null);
@@ -12,11 +13,24 @@ export const AuthProvider: React.FC <{ children: React.ReactNode }> = ({ //FC - 
     children,
 })=>{
     const [user, setUser] = useState<UserType>(null);
-
+    const router = useRouter();
     useEffect(()=>{
         const unsub = onAuthStateChanged(auth,(FirebaseUser)=>{
-            console.log("firebase user: ", user);
+
+            console.log('FirebaseUser: ', FirebaseUser);
+            if(FirebaseUser){
+                setUser({
+                    uid: FirebaseUser.uid,
+                    email: FirebaseUser.email,
+                    name: FirebaseUser.displayName,
+                });
+                router.replace("/(tabs)");
+            } else{
+                setUser(null);
+                router.replace("/(auth)/welcome");
+            }
         });
+        return () => unsub();
      }, []);
 
     const login = async (email: string, password: string) => {
