@@ -5,9 +5,12 @@ import Typo from '@/components/Typo';
 import { colors } from '@/constants/theme';
 import { auth } from '@/config/firebase';
 import { signOut } from 'firebase/auth';
+import { useAuth } from '@/contexts/authContext';
 
 function Home() {
-  
+  const { user } = useAuth();
+
+  console.log('user: ', user);
   const handleLogout = async() => {
     await signOut(auth);
   };
