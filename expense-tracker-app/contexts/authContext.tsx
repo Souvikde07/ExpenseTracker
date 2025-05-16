@@ -1,18 +1,23 @@
 import React from "react";
+import {auth, firestore} from "@/config/firebase";
 import { AuthContextType, UserType } from "../types";
-import { getAuth } from "firebase/auth";
-import { createUserWithEmailAndPassword, signInWithEmailAndPassword } from "firebase/auth";
-import { createContext, useContext, useState } from "react";
-import { firestore } from "../.expo/config/firebase";
+import { createUserWithEmailAndPassword, onAuthStateChanged, signInWithEmailAndPassword } from "firebase/auth";
 import { doc, getDoc, setDoc } from "firebase/firestore";
+import { createContext, useContext, useState, useEffect } from "react";
 
-const authContext = createContext<AuthContextType | null>(null);
-const auth = getAuth();
+
+const AuthContext = createContext<AuthContextType | null>(null);
 
 export const AuthProvider: React.FC <{ children: React.ReactNode }> = ({ //FC - Functional Component
     children,
 })=>{
     const [user, setUser] = useState<UserType>(null);
+
+    useEffect(()=>{
+        const unsub = onAuthStateChanged(auth,(FirebaseUser)=>{
+            console.log("firebase user: ", user);
+        });
+     }, []);
 
     const login = async (email: string, password: string) => {
         try{

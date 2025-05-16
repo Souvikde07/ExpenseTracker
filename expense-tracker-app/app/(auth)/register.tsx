@@ -9,7 +9,7 @@ import Input from '@/components/Input'
 import * as Icons from 'phosphor-react-native' 
 import Button from '@/components/Button'
 import { useRouter } from 'expo-router'
-import { useAuth } from '@/contexts/AuthContext'
+import { useAuth } from '@/contexts/authContext'
 
 const Register = () => {
 
@@ -28,9 +28,9 @@ const Register = () => {
     }
     setIsLoading(true);
     const res = await registerUser(
-      nameRef.current,
       emailRef.current,
-      passwordRef.current
+      passwordRef.current,
+      nameRef.current
     );
     setIsLoading(false);
     console.log('register result: ', res);

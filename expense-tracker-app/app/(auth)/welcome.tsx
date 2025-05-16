@@ -1,4 +1,4 @@
-import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
+import { Platform, Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import ScreenWrapper from '@/components/ScreenWrapper'
 import Typo from '@/components/Typo'
@@ -92,11 +92,20 @@ const styles = StyleSheet.create({
         paddingTop:verticalScale(30),
         paddingBottom: verticalScale(45),
         gap: spacingY._20,
-        shadowColor: "white",
-        shadowOffset: {width: 0, height: -10},
-        elevation: 10,
-        shadowRadius: 25,
-        shadowOpacity: 0.15,
+        ...Platform.select({
+            ios: {
+                shadowColor: "white",
+                shadowOffset: {
+                    width: 0,
+                    height: -10,
+                },
+                shadowOpacity: 0.15,
+                shadowRadius: 25,
+            },
+            android: {
+                elevation: 10,
+            },
+        }),
     },
     buttonContainer: {
         width: "100%",
