@@ -6,6 +6,7 @@ import { colors } from '@/constants/theme';
 import { auth } from '@/config/firebase';
 import { signOut } from 'firebase/auth';
 import { useAuth } from '@/contexts/authContext';
+import ScreenWrapper from '@/components/ScreenWrapper';
 
 function Home() {
   const { user } = useAuth();
@@ -16,14 +17,14 @@ function Home() {
   };
 
   return (
-    <View>
-      <Text>Home</Text>
+    <ScreenWrapper>
+      <Typo>Home</Typo>
       <Button onPress={handleLogout}>
         <Typo color={colors.black}>Logout</Typo>
       </Button>
-    </View>
-  )
-}
+    </ScreenWrapper>
+  );
+};
 
 export default Home
 const styles = StyleSheet.create({});
